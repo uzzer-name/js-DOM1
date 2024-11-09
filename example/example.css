@@ -1,75 +1,48 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   margin: 0;
+}
+
+.calculator {
+  background: white;
   padding: 20px;
-}
-
-h1 {
-  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
 }
 
-.description {
-  color: #555;
-  text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-li {
-  background-color: #e2e2e2;
-  margin: 5px 0;
+input[type="text"] {
+  width: calc(100% - 20px); /* Відступи зліва та справа */
+  height: 50px;
+  font-size: 24px;
+  text-align: right;
   padding: 10px;
-  border-radius: 4px;
-  text-align: center;
-  font-size: 1.2rem;
-}
-
-button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1rem;
-  margin: 10px 5px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  background-color: #333;
-  color: #fff;
-  transition: background-color 0.3s ease;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .buttons {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  padding: 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
 }
 
 button:hover {
-  background-color: #555;
-}
-
-
-#changeTextButton {
-  background-color: #4CAF50;
-}
-
-#changeTextButton:hover {
-  background-color: #45A049;
-}
-
-#addItemButton {
-  background-color: #2196F3;
-}
-
-#addItemButton:hover {
-  background-color: #0b7dda;
+  background-color: #0056b3;
 }

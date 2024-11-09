@@ -3,23 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Приклади</title>
     <link rel="stylesheet" href="example.css">
+    <title>Калькулятор</title>
 </head>
 <body>
-    <h1 id="title">Привіт, світ!</h1>
-    <p class="description">Це приклад роботи з DOM.</p>
-    <ul id="itemList">
-        <li class="item">Пункт 1</li>
-        <li class="item">Пункт 2</li>
-        <li class="item">Пункт 3</li>
-    </ul>
-    <div class="buttons">
-      <button id="changeTextButton">Змінити текст</button>
-      <button id="addItemButton">Додати пункт</button>
+    <div class="calculator">
+        <h1>Калькулятор</h1>
+        <input type="text" id="inputField" placeholder="0" readonly />
+        <div class="buttons">
+            <button onclick="clearAll()">CE</button>
+            <button onclick="clearEntry()">C</button>
+            <button onclick="calculateSquare()">x²</button>
+            <button onclick="appendOperator('/')">/</button>
+            <button onclick="appendNumber(7)">7</button>
+            <button onclick="appendNumber(8)">8</button>
+            <button onclick="appendNumber(9)">9</button>
+            <button onclick="appendOperator('*')">*</button>
+            <button onclick="appendNumber(4)">4</button>
+            <button onclick="appendNumber(5)">5</button>
+            <button onclick="appendNumber(6)">6</button>
+            <button onclick="appendOperator('-')">-</button>
+            <button onclick="appendNumber(1)">1</button>
+            <button onclick="appendNumber(2)">2</button>
+            <button onclick="appendNumber(3)">3</button>
+            <button onclick="appendOperator('+')">+</button>
+            <button onclick="appendDecimal()">.</button>
+            <button onclick="appendNumber(0)">0</button>
+            <button onclick="calculateSquareRoot()">√x</button>
+            <button onclick="calculateResult()">=</button>
+        </div>
     </div>
-   
-
     <script src="example.js"></script>
 </body>
 </html>

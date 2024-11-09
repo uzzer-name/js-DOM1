@@ -1,39 +1,112 @@
-// Отримати елемент за ID
-const title = document.getElementById('title');
-console.log('Елемент за ID:', title);
+let currentInput = '';
+let operator = '';
+let firstValue = null;
 
-// Змінити текст заголовка через 3 секунди
-setTimeout(() => {
-    title.textContent = 'DOM у дії!';
-}, 3000);
-
-// Отримати всі елементи з класом 'item'
-const items = document.getElementsByClassName('item');
-console.log('Елементи з класом "item":', items);
-
-// Змінити текст другого пункту
-if (items.length > 1) {
-    items[1].textContent = 'Змінений пункт 2';
+function clearAll() {
+    currentInput = '';
+    operator = '';
+    firstValue = null;
+    document.getElementById('inputField').value = '';
 }
 
-// Отримати перший елемент списку за селектором
-const firstItem = document.querySelector('#itemList .item');
-console.log('Перший пункт списку:', firstItem);
+function clearEntry() {
+    document.getElementById('inputField').value = '';
+}
 
-// Додати обробник події для кнопки зміни тексту
-document.getElementById('changeTextButton').addEventListener('click', function() {
-    title.textContent = 'Текст змінився!';
-});
+function appendNumber(num) {
+    const inputField = document.getElementById('inputField');
+    if (inputField.value === '0' || inputField.value === 'Error') {
+        inputField.value = num.toString();
+    } else {
+        inputField.value += num.toString();
+    }
+}
 
-const arrayOfItems = document.getElementsByClassName('item');
-console.log(arrayOfItems.length, "FLJKSNfKSNf")
+function appendDecimal() {
+    const inputField = document.getElementById('inputField');
+    if (!inputField.value.includes('.') && inputField.value !== 'Error') {
+        inputField.value += '.';
+    }
+}
 
-// Додати обробник події для кнопки додавання пункту
-document.getElementById('addItemButton').addEventListener('click', function() {
-    const newItem = document.createElement('li');
-    const arrayOfItems = document.getElementsByClassName('item');
-    console.log(arrayOfItems.length, "FLJKSNfKSNf")
-    newItem.textContent = `Новий пункт ${arrayOfItems.length + 1}`;
-    newItem.className = 'item';
-    document.getElementById('itemList').appendChild(newItem);
-});
+function appendOperator(op) {
+    const inputField = document.getElementById('inputField');
+    const value = parseFloat(inputField.value);
+
+    if (isNaN(value) || inputField.value === 'Error') {
+        return;
+    }
+
+    if (firstValue === null) {
+        firstValue = value;
+    } else {
+        currentInput += firstValue + ' ' + operator + ' ';
+    }
+
+    operator = op;
+    currentInput += operator + ' ';
+    inputField.value = '';
+}
+
+function calculateResult() {
+    const inputField = document.getElementById('inputField');
+    const value = parseFloat(inputField.value);
+
+    if (isNaN(value) || firstValue === null || operator === '') {
+        inputField.value = 'Error';
+        return;
+    }
+
+    currentInput += value;
+    let result;
+
+    switch (operator) {
+        case '+':
+            result = firstValue + value;
+            break;
+        case '-':
+            result = firstValue - value;
+            break;
+        case '*':
+            result = firstValue * value;
+            break;
+        case '/':
+            if (value === 0) {
+                inputField.value = 'Error';
+                return;
+            }
+            result = firstValue / value;
+            break;
+        default:
+            inputField.value = 'Error';
+            return;
+    }
+
+    // Виводимо результат без десяткових знаків, якщо це ціле число
+    inputField.value = Number.isInteger(result) ? result.toString() : result.toFixed(2);
+    currentInput = '';
+    operator = '';
+    firstValue = result; // Зберігаємо результат для наступної операції
+}
+
+function calculateSquare() {
+    const inputField = document.getElementById('inputField');
+    const value = parseFloat(inputField.value);
+    if (!isNaN(value)) {
+        const result = value * value;
+        inputField.value = Number.isInteger(result) ? result.toString() : result.toFixed(2);
+    } else {
+        inputField.value = 'Error';
+    }
+}
+
+function calculateSquareRoot() {
+    const inputField = document.getElementById('inputField');
+    const value = parseFloat(inputField.value);
+    if (!isNaN(value)) {
+        const result = Math.sqrt(value);
+        inputField.value = Number.isInteger(result) ? result.toString() : result.toFixed(2);
+    } else {
+        inputField.value = 'Error';
+    }
+}
